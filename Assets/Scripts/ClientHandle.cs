@@ -2,6 +2,7 @@ using GameServer;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ClientHandle : MonoBehaviour
@@ -18,11 +19,29 @@ public class ClientHandle : MonoBehaviour
         Client.instance.udp.Connect(((IPEndPoint)Client.instance.tcp.socket.Client.LocalEndPoint).Port);
     }
 
-    public static void UDPTest(Packet packet)
+    public static void SpawnPlayer(Packet packet)
     {
-        string m = packet.ReadString();
+        int _id = packet.ReadInt();
+        string _userName = packet.ReadString();
+        Vector3 position = packet.ReadVector3();
+        Quaternion rotation = packet.ReadQuaternion();
 
-        Debug.Log($"Received packet using UDP. Contatis message : {m}");
-        ClientSend.UDPTestReceived();
+        GameManager.instance.SpawnPlayer(_id, _userName, position, rotation);
+    }
+
+    public static void PlayerPosition(Packet packet)
+    {
+        int id = packet.ReadInt();
+        Vector3 position = packet.ReadVector3();
+
+        GameManager.players[id].transform.position = position;
+    }
+
+    public static void PlayerRotation(Packet packet)
+    {
+        int id = packet.ReadInt();
+        Quaternion rotation = packet.ReadQuaternion();
+
+        GameManager.players[id].transform.rotation = rotation;
     }
 }
