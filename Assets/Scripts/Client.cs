@@ -18,10 +18,11 @@ public class Client : MonoBehaviour
     public TCP tcp;
     public UDP udp;
 
+    private bool isConnected = false;
     private delegate void PacketHandler(Packet packet);
     private static Dictionary<int, PacketHandler> packetHandlers;
 
-    private void Awake()
+    private void Awake() // 초기화 생명 주기 함수
     {
         if (instance == null) // 아직 만들어지지 않았다면 현재 객체 할당
         {
@@ -34,16 +35,22 @@ public class Client : MonoBehaviour
     }
 
 
-    void Start()
+    void Start() // 시작시 동작하는 생명 주기 함수
     {
         tcp = new TCP();
         udp = new UDP();
+    }
+
+    private void OnApplicationQuit() // 게임 종료시 작동하는 함수
+    {
+        Disconnect();
     }
 
     public void ConnectionServer()
     {
         InitClientData();
 
+        isConnected = true; // 연결 상태..
         tcp.Connect();
     }
 
@@ -104,6 +111,7 @@ public class Client : MonoBehaviour
                 int byteLength = stream.EndRead(_result);
                 if (byteLength <= 0)
                 {
+                    instance.Disconnect();
                     return;
                 }
 
@@ -115,7 +123,7 @@ public class Client : MonoBehaviour
             }
             catch (Exception e)
             {
-                // Someting do
+                Disconnect();
             }
         }
 
@@ -159,6 +167,16 @@ public class Client : MonoBehaviour
             }
 
             return false;
+        }
+
+        private void Disconnect()
+        {
+            instance.Disconnect();
+
+            stream = null;
+            receiveData = null;
+            receiveBuffer = null;
+            socket = null;
         }
     }
 
@@ -210,6 +228,7 @@ public class Client : MonoBehaviour
 
                 if(data.Length < 4)
                 {
+                    instance.Disconnect();
                     return;
                 }
 
@@ -217,7 +236,7 @@ public class Client : MonoBehaviour
             }
             catch (Exception ex)
             {
-
+                Disconnect();
             }
         }
 
@@ -238,6 +257,14 @@ public class Client : MonoBehaviour
                 }
             });
         }
+
+        private void Disconnect()
+        {
+            instance.Disconnect();
+
+            endPoint = null;
+            socket = null;
+        }
     }
 
     private void InitClientData()
@@ -250,5 +277,17 @@ public class Client : MonoBehaviour
             {(int)ServerPackets.playerPosition, ClientHandle.PlayerPosition },
         };
         Debug.Log("Init Packet");
+    }
+
+    private void Disconnect()
+    {
+        if (isConnected) // 이미 종료되어 실행됐을 때 예외 처리
+        {
+            isConnected = false;
+            tcp.socket.Close();
+            udp.socket.Close();
+
+            Debug.Log("Disconnected from server.");
+        }
     }
 }
