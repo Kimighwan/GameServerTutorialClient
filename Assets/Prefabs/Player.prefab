@@ -47,6 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   userName: 
+  hp: 0
+  maxHP: 100
+  model: {fileID: 977954819709280900}
 --- !u!1 &7044607355982565298
 GameObject:
   m_ObjectHideFlags: 0
