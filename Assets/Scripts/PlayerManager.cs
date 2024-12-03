@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
     public string userName;
     public float hp;
     public float maxHP;
+    public int itemCount = 0;
     public MeshRenderer model;
 
     public void Initialize(int _id, string _userName)

@@ -7,9 +7,11 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public static Dictionary<int, PlayerManager> players = new Dictionary<int, PlayerManager>();
+    public static Dictionary<int, ItemSpawner> itemSpawners = new Dictionary<int, ItemSpawner>();
 
     public GameObject localPlayerPrefab;
     public GameObject playerPrefab;
+    public GameObject itemSpawnerPrefab;
 
     private void Awake()
     {
@@ -37,5 +39,12 @@ public class GameManager : MonoBehaviour
 
         player.GetComponent<PlayerManager>().Initialize(id, userName);
         players.Add(id, player.GetComponent<PlayerManager>());
+    }
+
+    public void CreateItemSpawner(int spawnerId, Vector3 pos, bool hasItem)
+    {
+        GameObject spawner = Instantiate(itemSpawnerPrefab, pos, itemSpawnerPrefab.transform.rotation);
+        spawner.GetComponent<ItemSpawner>().Initialize(spawnerId, hasItem);
+        itemSpawners.Add(spawnerId, spawner.GetComponent<ItemSpawner>());
     }
 }

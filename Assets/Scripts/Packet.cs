@@ -15,6 +15,9 @@ namespace GameServer
         playerDisconnected,
         playerHP,
         playerReSpawned,
+        createItemSpawner,
+        itemSpawned,
+        itemPickedUp,
     }
 
     /// <summary>Sent from client to server.</summary>

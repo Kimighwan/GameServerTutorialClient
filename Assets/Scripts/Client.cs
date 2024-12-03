@@ -278,6 +278,9 @@ public class Client : MonoBehaviour
             {(int)ServerPackets.playerDisconnected, ClientHandle.PlayerDisconnected },
             {(int)ServerPackets.playerHP, ClientHandle.PlayerHP },
             {(int)ServerPackets.playerReSpawned, ClientHandle.PlayerReSpawned },
+            {(int)ServerPackets.createItemSpawner , ClientHandle.CreateItemSpawner },
+            {(int)ServerPackets.itemSpawned , ClientHandle.ItemSpawned },
+            {(int)ServerPackets.itemPickedUp , ClientHandle.ItemPickedUp },
         };
         Debug.Log("Init Packet");
     }
