@@ -18,6 +18,9 @@ namespace GameServer
         createItemSpawner,
         itemSpawned,
         itemPickedUp,
+        spawnProjectile,
+        projectilePostion,
+        projectileExploded,
     }
 
     /// <summary>Sent from client to server.</summary>
@@ -26,6 +29,7 @@ namespace GameServer
         welcomeReceived = 1,
         playerMovement,
         playerShoot,
+        playerThrowItem,
     }
 
     public class Packet : IDisposable

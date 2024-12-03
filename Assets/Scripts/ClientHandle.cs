@@ -92,4 +92,30 @@ public class ClientHandle : MonoBehaviour
         GameManager.itemSpawners[spawnId].ItemPickedUp();
         GameManager.players[byPlayer].itemCount++;
     }
+
+    public static void SpawnProjectile(Packet packet)
+    {
+        int projectileId = packet.ReadInt();
+        Vector3 pos = packet.ReadVector3();
+        int throwByPlayer = packet.ReadInt();
+
+        GameManager.instance.SpawnProjectile(projectileId, pos);
+        GameManager.players[throwByPlayer].itemCount--;
+    }
+
+    public static void ProjectilePosition(Packet packet)
+    {
+        int projectileId = packet.ReadInt();
+        Vector3 pos = packet.ReadVector3();
+
+        GameManager.projectiles[projectileId].transform.position = pos;
+    }
+
+    public static void ProjectileExploded(Packet packet)
+    {
+        int projectileId = packet.ReadInt();
+        Vector3 pos = packet.ReadVector3();
+
+        GameManager.projectiles[projectileId].Explode(pos);
+    }
 }
