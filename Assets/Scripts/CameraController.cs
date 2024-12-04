@@ -5,8 +5,8 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public PlayerManager player;
-    public float sensitivity = 100f;
-    public float clampAngel = 85f;
+    public float sensitivity = 150f;
+    public float clampAngel = 100f;
 
     private float verticalRoation;
     private float horizontalRoation;
@@ -33,8 +33,8 @@ public class CameraController : MonoBehaviour
         float mouseHorizontal = Input.GetAxis("Mouse X");
 
 
-        verticalRoation += mouseVertical * sensitivity * Time.deltaTime;
-        horizontalRoation += mouseHorizontal * sensitivity * Time.deltaTime;
+        verticalRoation += mouseVertical * sensitivity * Time.deltaTime * 7;
+        horizontalRoation += mouseHorizontal * sensitivity * Time.deltaTime * 7;
 
         verticalRoation = Mathf.Clamp(verticalRoation, - clampAngel, clampAngel);
 
