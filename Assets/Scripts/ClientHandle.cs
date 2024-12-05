@@ -12,11 +12,11 @@ public class ClientHandle : MonoBehaviour
         string m = packet.ReadString();
         int id = packet.ReadInt();
 
-        Debug.Log($"Message from Server : {m}");
+        Debug.Log($"서버에서 받은 메세지 : {m}");
         Client.instance.id = id;
         ClientSend.WelcomeReceived();
 
-        Client.instance.udp.Connect(((IPEndPoint)Client.instance.tcp.socket.Client.LocalEndPoint).Port);
+        Client.instance.udp.Connect(((IPEndPoint)Client.instance.tcp.socket.Client.LocalEndPoint).Port); // tcp로 바인딩된 포트 번호로 udp 연결
     }
 
     public static void SpawnPlayer(Packet packet)

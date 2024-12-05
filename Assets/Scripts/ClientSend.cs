@@ -5,20 +5,20 @@ using UnityEngine;
 
 public class ClientSend : MonoBehaviour
 {
-    private static void SendTCPData(Packet packet)
+    private static void SendTCPData(Packet packet) // 패킷 전달
     {
         packet.WriteLength();
         Client.instance.tcp.SendData(packet);
     }
 
-    private static void SendUDPData(Packet packet)
+    private static void SendUDPData(Packet packet) // 패킷 전달
     {
         packet.WriteLength();
         Client.instance.udp.SendData(packet);
     }
 
     #region Packet
-    public static void WelcomeReceived()
+    public static void WelcomeReceived() // 클라이언트가 환영 메세지를 받으면 서버로 보낼 패킷을 생성
     {
         using (Packet packet = new Packet((int)ClientPackets.welcomeReceived))
         {
