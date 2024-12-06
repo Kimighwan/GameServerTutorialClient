@@ -49,7 +49,7 @@ public class Client : MonoBehaviour
     {
         InitClientData();
 
-        isConnected = true; // 연결 상태..
+        isConnected = true; // 연결 상태로 변경
         tcp.Connect();
     }
 
@@ -214,7 +214,7 @@ public class Client : MonoBehaviour
                                                // 서버에서 이 값을 사용하여 누가 보낸 것인지 확인이 가능하다.
                 if(socket != null)
                 {
-                    socket.BeginSend(packet.ToArray(), packet.Length(), null, null);
+                    socket.BeginSend(packet.ToArray(), packet.Length(), null, null); // 패킷에 메세지 전송
                 }
             }
             catch (Exception ex)
@@ -294,13 +294,13 @@ public class Client : MonoBehaviour
 
     private void Disconnect()
     {
-        if (isConnected) // 이미 종료되어 실행됐을 때 예외 처리
+        if (isConnected) // 연결 상태이면 종료
         {
             isConnected = false;
             tcp.socket.Close();
             udp.socket.Close();
 
-            Debug.Log("Disconnected from server.");
+            Debug.Log("서버로 부터 종료.");
         }
     }
 }

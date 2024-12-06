@@ -5,7 +5,8 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public PlayerManager player;
-    public float sensitivity = 150f;
+    
+    public float sensitivity = 150f; // °¨µµ
     public float clampAngel = 100f;
 
     private float verticalRoation;
@@ -24,6 +25,7 @@ public class CameraController : MonoBehaviour
 
         if (Cursor.lockState == CursorLockMode.Locked)
             Look();
+
         Debug.DrawRay(transform.position, transform.forward * 2, Color.red);
     }
 
