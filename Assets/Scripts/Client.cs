@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Net;
@@ -9,56 +9,56 @@ using UnityEngine.UI;
 
 public class Client : MonoBehaviour
 {
-    public static Client instance; // ½Ì±ÛÅÏ ÆĞÅÏ
+    public static Client instance; // ì‹±ê¸€í„´ íŒ¨í„´
     public static int bufferSize = 4096;
 
-    public string ip = "127.0.0.1"; // ·ÎÄÃ hostÀÎ ¼­¹ö ip
-    public int port = 33374; // ÇØ´ç Æ÷Æ®·Î ¼­¹ö¸¦ ¿­±â¿¡ Æ÷Æ®¹øÈ£ ÁöÁ¤
+    public string ip = "127.0.0.1"; // ë¡œì»¬ hostì¸ ì„œë²„ ip
+    public int port = 33374; // í•´ë‹¹ í¬íŠ¸ë¡œ ì„œë²„ë¥¼ ì—´ê¸°ì— í¬íŠ¸ë²ˆí˜¸ ì§€ì •
     public int id = 0;
-    public TCP tcp; // tcp ¼ÒÄÏ Å¬·¡½º ¾Æ·¡¿¡¼­ Á÷Á¢ »ı¼º
-    public UDP udp; // udp ¼ÒÄÏ Å¬·¡½º ¾Æ·¡¿¡¼­ Á÷Á¢ »ı¼º
+    public TCP tcp; // tcp ì†Œì¼“ í´ë˜ìŠ¤ ì•„ë˜ì—ì„œ ì§ì ‘ ìƒì„±
+    public UDP udp; // udp ì†Œì¼“ í´ë˜ìŠ¤ ì•„ë˜ì—ì„œ ì§ì ‘ ìƒì„±
 
     private bool isConnected = false;
     private delegate void PacketHandler(Packet packet);
     private static Dictionary<int, PacketHandler> packetHandlers;
 
-    public Image disConnectedUI;        // ¼­¹ö ¿¬°á ²÷±è½Ã Ç¥½ÃµÇ´Â UI
+    public Image disConnectedUI;        // ì„œë²„ ì—°ê²° ëŠê¹€ì‹œ í‘œì‹œë˜ëŠ” UI
 
-    private void Awake() // À¯´ÏÆ¼ ¿£ÁøÀÇ »ı¸í ÁÖ±â ÇÔ¼ö -> °ÔÀÓ ½ÇÇà½Ã ÃÊ±â¿¡ ÇÑ ¹ø ½ÇÇàµÇ´Â ÇÔ¼ö
+    private void Awake() // ìœ ë‹ˆí‹° ì—”ì§„ì˜ ìƒëª… ì£¼ê¸° í•¨ìˆ˜ -> ê²Œì„ ì‹¤í–‰ì‹œ ì´ˆê¸°ì— í•œ ë²ˆ ì‹¤í–‰ë˜ëŠ” í•¨ìˆ˜
     {
-        if (instance == null) // ¾ÆÁ÷ ¸¸µé¾îÁöÁö ¾Ê¾Ò´Ù¸é ÇöÀç °´Ã¼ ÇÒ´ç
+        if (instance == null) // ì•„ì§ ë§Œë“¤ì–´ì§€ì§€ ì•Šì•˜ë‹¤ë©´ í˜„ì¬ ê°ì²´ í• ë‹¹
         {
             instance = this;
         }
-        else if (instance != this) // ÀÌ¹Ì Á¸ÀçÇÑ´Ù¸é ÇöÀç °´Ã¼ »èÁ¦
+        else if (instance != this) // ì´ë¯¸ ì¡´ì¬í•œë‹¤ë©´ í˜„ì¬ ê°ì²´ ì‚­ì œ
         {
             Destroy(this);
         }
     }
 
 
-    void Start() // ½ÃÀÛ½Ã µ¿ÀÛÇÏ´Â »ı¸í ÁÖ±â ÇÔ¼ö
+    void Start() // ì‹œì‘ì‹œ ë™ì‘í•˜ëŠ” ìƒëª… ì£¼ê¸° í•¨ìˆ˜
     {
         tcp = new TCP();
         udp = new UDP();
     }
 
-    private void OnApplicationQuit() // °ÔÀÓ Á¾·á½Ã ÀÛµ¿ÇÏ´Â À¯´ÏÆ¼ ¿£ÁøÀÇ ÇÔ¼ö
+    private void OnApplicationQuit() // ê²Œì„ ì¢…ë£Œì‹œ ì‘ë™í•˜ëŠ” ìœ ë‹ˆí‹° ì—”ì§„ì˜ í•¨ìˆ˜
     {
         Disconnect();
     }
 
-    public void ConnectionServer() // ¼­¹ö¿Í ¿¬°á ½ÃÀÛ
+    public void ConnectionServer() // ì„œë²„ì™€ ì—°ê²° ì‹œì‘
     {
         InitClientData();
 
-        isConnected = true; // ¿¬°á »óÅÂ·Î º¯°æ
+        isConnected = true; // ì—°ê²° ìƒíƒœë¡œ ë³€ê²½
         tcp.Connect();
     }
 
     public class TCP
     {
-        public TcpClient socket; // tcp ¼ÒÄÏ
+        public TcpClient socket; // tcp ì†Œì¼“
 
         private NetworkStream stream;
         private Packet receiveData;
@@ -68,26 +68,26 @@ public class Client : MonoBehaviour
         {
             socket = new TcpClient()
             {
-                ReceiveBufferSize = bufferSize, // ¼Û½Å ¹öÆÛ Å©±â ¼³Á¤
-                SendBufferSize = bufferSize     // ¼ö½Å ¹öÆÛ Å©±â ¼³Á¤
+                ReceiveBufferSize = bufferSize, // ì†¡ì‹  ë²„í¼ í¬ê¸° ì„¤ì •
+                SendBufferSize = bufferSize     // ìˆ˜ì‹  ë²„í¼ í¬ê¸° ì„¤ì •
             };
 
             receiveBuffer = new byte[bufferSize];
-            socket.BeginConnect(instance.ip, instance.port, ConnectCallBack, socket); // Å¬¶óÀÌ¾ğÆ®°¡ ¼­¹ö¿¡°Ô ¿¬°á ¿äÃ» ½ÃÀÛ
+            socket.BeginConnect(instance.ip, instance.port, ConnectCallBack, socket); // í´ë¼ì´ì–¸íŠ¸ê°€ ì„œë²„ì—ê²Œ ì—°ê²° ìš”ì²­ ì‹œì‘
         }
 
-        private void ConnectCallBack(IAsyncResult _result) // ¿¬°á ÈÄ ½ÇÇàµÇ´Â Äİ¹é ÇÔ¼ö
+        private void ConnectCallBack(IAsyncResult _result) // ì—°ê²° í›„ ì‹¤í–‰ë˜ëŠ” ì½œë°± í•¨ìˆ˜
         {
             socket.EndConnect(_result);
 
-            if (!socket.Connected) // ¿¬°áÀÌ ¾ÈµÇ¸é ¹Ù·Î Á¾·á
+            if (!socket.Connected) // ì—°ê²°ì´ ì•ˆë˜ë©´ ë°”ë¡œ ì¢…ë£Œ
                 return;
 
-            stream = socket.GetStream(); // ¼ÒÄÏÀ» ÅëÇØ ½ºÆ®¸² ÀĞ±â
+            stream = socket.GetStream(); // ì†Œì¼“ì„ í†µí•´ ìŠ¤íŠ¸ë¦¼ ì½ê¸°
 
             receiveData = new Packet();
 
-            stream.BeginRead(receiveBuffer, 0, bufferSize, ReceiveCallBack, null); // ½ºÆ®¸²À» ÅëÇØ ÀĞÀº µ¥ÀÌÅÍ¸¦ ¹öÆÛ¿¡ ÀúÀå
+            stream.BeginRead(receiveBuffer, 0, bufferSize, ReceiveCallBack, null); // ìŠ¤íŠ¸ë¦¼ì„ í†µí•´ ì½ì€ ë°ì´í„°ë¥¼ ë²„í¼ì— ì €ì¥
         }
 
         public void SendData(Packet packet)
@@ -96,17 +96,17 @@ public class Client : MonoBehaviour
             {
                 if (socket != null)
                 {
-                    stream.BeginWrite(packet.ToArray(), 0, packet.Length(), null, null); // ÆĞÅ¶ÀÇ µ¥ÀÌÅÍ¸¦ ½ºÆ®¸²À¸·Î Àü´Ş
+                    stream.BeginWrite(packet.ToArray(), 0, packet.Length(), null, null); // íŒ¨í‚·ì˜ ë°ì´í„°ë¥¼ ìŠ¤íŠ¸ë¦¼ìœ¼ë¡œ ì „ë‹¬
                 }
             }
             catch(Exception e)
             {
-                Debug.Log($"TCP¸¦ ÅëÇØ µ¥ÀÌÅÍ º¸³»±â ½ÇÆĞ : {e}");
+                Debug.Log($"TCPë¥¼ í†µí•´ ë°ì´í„° ë³´ë‚´ê¸° ì‹¤íŒ¨ : {e}");
             }
         }
 
 
-        private void ReceiveCallBack(IAsyncResult _result) // ¼­¹öÀÇ ReceiveCallBack¿Í µ¿ÀÏ
+        private void ReceiveCallBack(IAsyncResult _result) // ì„œë²„ì˜ ReceiveCallBackì™€ ë™ì¼
         {
             try
             {
@@ -120,8 +120,8 @@ public class Client : MonoBehaviour
                 byte[] data = new byte[byteLength];
                 Array.Copy(receiveBuffer, data, byteLength);
 
-                receiveData.Reset(HandleData(data)); // ½ºÆ®¸² ÀĞ±âÀü¿¡ ¼ö½Å µ¥ÀÌÅÍ¸¦ Àç¼³Á¤ÇÑ´Ù
-                                                     // ¼ö½ÅµÈ µ¥ÀÌÅÍ Çü½Ä¿¡ ¸Â°Ô ÆĞÅ¶ ¹öÆÛ¿¡ ÀĞ´Â´Ù.
+                receiveData.Reset(HandleData(data)); // ìŠ¤íŠ¸ë¦¼ ì½ê¸°ì „ì— ìˆ˜ì‹  ë°ì´í„°ë¥¼ ì¬ì„¤ì •í•œë‹¤
+                                                     // ìˆ˜ì‹ ëœ ë°ì´í„° í˜•ì‹ì— ë§ê²Œ íŒ¨í‚· ë²„í¼ì— ì½ëŠ”ë‹¤.
                 stream.BeginRead(receiveBuffer, 0, bufferSize, ReceiveCallBack, null);
             }
             catch (Exception e)
@@ -134,7 +134,7 @@ public class Client : MonoBehaviour
         {
             int packetLength = 0;
 
-            receiveData.SetBytes(data); // ½ºÆ®¸²¿¡¼­ ÀĞÀº ¹ÙÀÌÆ®·Î ÆĞÅ¶ Å©±â¸¦ Àç¼³Á¤
+            receiveData.SetBytes(data); // ìŠ¤íŠ¸ë¦¼ì—ì„œ ì½ì€ ë°”ì´íŠ¸ë¡œ íŒ¨í‚· í¬ê¸°ë¥¼ ì¬ì„¤ì •
 
             if (receiveData.UnreadLength() >= 4)
             {
@@ -143,7 +143,7 @@ public class Client : MonoBehaviour
                     return true;
             }
 
-            while (packetLength > 0 && packetLength <= receiveData.UnreadLength()) // ¾ÆÁ÷ ³»ºÎ¿¡ Ã³¸®ÇÒ ¼ö ÀÖ´Â µ¥ÀÌÅÍ°¡ ³²¾ÆÀÖÀ½
+            while (packetLength > 0 && packetLength <= receiveData.UnreadLength()) // ì•„ì§ ë‚´ë¶€ì— ì²˜ë¦¬í•  ìˆ˜ ìˆëŠ” ë°ì´í„°ê°€ ë‚¨ì•„ìˆìŒ
             {
                 byte[] packetBytes = receiveData.ReadBytes(packetLength);
                 ThreadManager.ExecuteOnMainThread(() =>
@@ -185,27 +185,27 @@ public class Client : MonoBehaviour
 
     public class UDP
     {
-        public UdpClient socket; // udp ¼ÒÄÏ
-        public IPEndPoint endPoint; // ¸ñÀûÁö ÁÖ¼Ò¿Í Æ÷Æ® ¹øÈ£
-                                    // IPEndPoint´Â ip  + Æ÷Æ® ¹øÈ£¸¦ ³ªÅ¸³»´Â Å¸ÀÔÀÌ´Ù.
+        public UdpClient socket; // udp ì†Œì¼“
+        public IPEndPoint endPoint; // ëª©ì ì§€ ì£¼ì†Œì™€ í¬íŠ¸ ë²ˆí˜¸
+                                    // IPEndPointëŠ” ip  + í¬íŠ¸ ë²ˆí˜¸ë¥¼ ë‚˜íƒ€ë‚´ëŠ” íƒ€ì…ì´ë‹¤.
 
         public UDP()
         {
-            endPoint = new IPEndPoint(IPAddress.Parse(instance.ip), instance.port); // ip¿Í port ¹øÈ£·Î »õ·Î¿î IPEndPoint »ı¼º
-                                                                                    // ¼­¹ö IPEndPoint°¡ µÈ´Ù
+            endPoint = new IPEndPoint(IPAddress.Parse(instance.ip), instance.port); // ipì™€ port ë²ˆí˜¸ë¡œ ìƒˆë¡œìš´ IPEndPoint ìƒì„±
+                                                                                    // ì„œë²„ IPEndPointê°€ ëœë‹¤
         }
 
         public void Connect(int localPort)
         {
             socket = new UdpClient(localPort);
 
-            socket.Connect(endPoint); // udp Å¬¶óÀÌ¾ğÆ®¸¦ ·ÎÄÁ Æ÷Æ®¿¡ ¹ÙÀÎµù
-            socket.BeginReceive(ReceiveCallback, null); // udp ¼ö½Å ¸Ş¼­µå È£Ãâ
+            socket.Connect(endPoint); // udp í´ë¼ì´ì–¸íŠ¸ë¥¼ ë¡œì»¨ í¬íŠ¸ì— ë°”ì¸ë”©
+            socket.BeginReceive(ReceiveCallback, null); // udp ìˆ˜ì‹  ë©”ì„œë“œ í˜¸ì¶œ
 
             using (Packet packet = new Packet())
             {
-                SendData(packet); // ¼­¹ö¿ÍÀÇ ¿¬°á ½ÃÀÛ
-                                  // ·ÎÄÃ Æ÷Æ®¸¦ ¿­¾î Å¬¶óÀÌ¾ğÆ®°¡ ¸Ş¼¼Áö¸¦ ¹ŞÀ» ¼ö ÀÖ´Â »óÅÂ°¡ µÈ´Ù
+                SendData(packet); // ì„œë²„ì™€ì˜ ì—°ê²° ì‹œì‘
+                                  // ë¡œì»¬ í¬íŠ¸ë¥¼ ì—´ì–´ í´ë¼ì´ì–¸íŠ¸ê°€ ë©”ì„¸ì§€ë¥¼ ë°›ì„ ìˆ˜ ìˆëŠ” ìƒíƒœê°€ ëœë‹¤
             }
         }
 
@@ -213,16 +213,16 @@ public class Client : MonoBehaviour
         {
             try
             {
-                packet.InsertInt(instance.id); // ÆĞÅ¶¿¡ Å¬¶óÀÌ¾ğÆ® ID »ğÀÔ
-                                               // ¼­¹ö¿¡¼­ ÀÌ °ªÀ» »ç¿ëÇÏ¿© ´©°¡ º¸³½ °ÍÀÎÁö È®ÀÎÀÌ °¡´ÉÇÏ´Ù.
+                packet.InsertInt(instance.id); // íŒ¨í‚·ì— í´ë¼ì´ì–¸íŠ¸ ID ì‚½ì…
+                                               // ì„œë²„ì—ì„œ ì´ ê°’ì„ ì‚¬ìš©í•˜ì—¬ ëˆ„ê°€ ë³´ë‚¸ ê²ƒì¸ì§€ í™•ì¸ì´ ê°€ëŠ¥í•˜ë‹¤.
                 if(socket != null)
                 {
-                    socket.BeginSend(packet.ToArray(), packet.Length(), null, null); // ÆĞÅ¶¿¡ ¸Ş¼¼Áö Àü¼Û
+                    socket.BeginSend(packet.ToArray(), packet.Length(), null, null); // íŒ¨í‚·ì— ë©”ì„¸ì§€ ì „ì†¡
                 }
             }
             catch (Exception ex)
             {
-                Debug.Log($"udp µ¥ÀÌÅÍ°¡ ¼­¹ö¿¡°Ô Àü¼ÛµÇÁö ¾ÊÀ½ / {ex}");
+                Debug.Log($"udp ë°ì´í„°ê°€ ì„œë²„ì—ê²Œ ì „ì†¡ë˜ì§€ ì•ŠìŒ / {ex}");
             }
         }
 
@@ -230,10 +230,10 @@ public class Client : MonoBehaviour
         {
             try
             {
-                byte[] data = socket.EndReceive(result, ref endPoint); // ¼ÒÄÏÀ» ÅëÇØ µ¥ÀÌÅÍ¸¦ ÀĞ¾îµå¸²
-                socket.BeginReceive(ReceiveCallback, null); // ´Ù½Ã ¼ÒÄÏÀ¸·Î ¼ö½ÅÀ» ÇÑ´Ù.
+                byte[] data = socket.EndReceive(result, ref endPoint); // ì†Œì¼“ì„ í†µí•´ ë°ì´í„°ë¥¼ ì½ì–´ë“œë¦¼
+                socket.BeginReceive(ReceiveCallback, null); // ë‹¤ì‹œ ì†Œì¼“ìœ¼ë¡œ ìˆ˜ì‹ ì„ í•œë‹¤.
 
-                if(data.Length < 4) // ÆĞÅ¶ÀÌ Á¦´ë·Î ¿ÀÁö ¾ÊÀ¸¸é ¿¬°á ²÷±â
+                if(data.Length < 4) // íŒ¨í‚·ì´ ì œëŒ€ë¡œ ì˜¤ì§€ ì•Šìœ¼ë©´ ì—°ê²° ëŠê¸°
                 {
                     instance.Disconnect();
                     return;
@@ -251,7 +251,7 @@ public class Client : MonoBehaviour
         {
             using (Packet packet = new Packet(data))
             {
-                int packetLength = packet.ReadInt(); // ¼ö½ÅÇÑ ¹ÙÀÌÆ® ±æÀÌ
+                int packetLength = packet.ReadInt(); // ìˆ˜ì‹ í•œ ë°”ì´íŠ¸ ê¸¸ì´
                 data = packet.ReadBytes(packetLength);
             }
 
@@ -260,7 +260,7 @@ public class Client : MonoBehaviour
                 using (Packet packet = new Packet(data))
                 {
                     int packetId = packet.ReadInt();
-                    packetHandlers[packetId](packet); // ID¸¦ ÀĞ°í ÀûÀıÇÑ È£Ãâ·Î ÅëÇØ »õ ÆĞÅ¶À» »ı¼º
+                    packetHandlers[packetId](packet); // IDë¥¼ ì½ê³  ì ì ˆí•œ í˜¸ì¶œë¡œ í†µí•´ ìƒˆ íŒ¨í‚·ì„ ìƒì„±
                 }
             });
         }
@@ -297,13 +297,13 @@ public class Client : MonoBehaviour
 
     private void Disconnect()
     {
-        if (isConnected) // ¿¬°á »óÅÂÀÌ¸é Á¾·á
+        if (isConnected) // ì—°ê²° ìƒíƒœì´ë©´ ì¢…ë£Œ
         {
             isConnected = false;
             tcp.socket.Close();
             udp.socket.Close();
 
-            Debug.Log("¼­¹ö·Î ºÎÅÍ Á¾·á.");
+            Debug.Log("ì„œë²„ë¡œ ë¶€í„° ì¢…ë£Œ.");
         }
     }
 }

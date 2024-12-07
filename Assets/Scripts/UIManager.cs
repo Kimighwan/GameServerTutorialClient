@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,25 +7,25 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
-    public GameObject start; // ¹öÆ°°ú userNameField ÇÊµåÄ­ÀÇ ¿ÀºêÁ§Æ®
-    public InputField userNameField; // À¯Àú ÀÌ¸§À» Àû´Â ÇÊµå Ä­
+    public GameObject start; // ë²„íŠ¼ê³¼ userNameField í•„ë“œì¹¸ì˜ ì˜¤ë¸Œì íŠ¸
+    public InputField userNameField; // ìœ ì € ì´ë¦„ì„ ì ëŠ” í•„ë“œ ì¹¸
 
     private void Awake()
     {
-        if (instance == null) // ¾ÆÁ÷ ¸¸µé¾îÁöÁö ¾Ê¾Ò´Ù¸é ÇöÀç °´Ã¼ ÇÒ´ç
+        if (instance == null) // ì•„ì§ ë§Œë“¤ì–´ì§€ì§€ ì•Šì•˜ë‹¤ë©´ í˜„ì¬ ê°ì²´ í• ë‹¹
         {
             instance = this;
         }
-        else if (instance != this) // ÀÌ¹Ì Á¸ÀçÇÑ´Ù¸é ÇöÀç °´Ã¼ »èÁ¦
+        else if (instance != this) // ì´ë¯¸ ì¡´ì¬í•œë‹¤ë©´ í˜„ì¬ ê°ì²´ ì‚­ì œ
         {
             Destroy(this);
         }
     }
 
-    public void ServerConnect() // À¯´ÏÆ¼ÀÇ ¹öÆ°¿¡ ¿¬°áÇÏ¿© ÀÛµ¿ÇÏ´Â ÇÔ¼ö
+    public void ServerConnect() // ìœ ë‹ˆí‹°ì˜ ë²„íŠ¼ì— ì—°ê²°í•˜ì—¬ ì‘ë™í•˜ëŠ” í•¨ìˆ˜
     {
-        start.SetActive(false); // ºñÈ°¼ºÈ­
-        userNameField.interactable = false; // ÇÊµå Ä­¿¡ ´õ ÀÌ»ó ÀÔ·ÂÀÌ ¾ÈµÇµµ·Ï Ã³¸®
-        Client.instance.ConnectionServer(); // ¼­¹ö¿Í ¿¬°á ½ÃÀÛ
+        start.SetActive(false); // ë¹„í™œì„±í™”
+        userNameField.interactable = false; // í•„ë“œ ì¹¸ì— ë” ì´ìƒ ì…ë ¥ì´ ì•ˆë˜ë„ë¡ ì²˜ë¦¬
+        Client.instance.ConnectionServer(); // ì„œë²„ì™€ ì—°ê²° ì‹œì‘
     }
 }

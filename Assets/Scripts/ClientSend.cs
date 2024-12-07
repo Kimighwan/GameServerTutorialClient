@@ -1,33 +1,33 @@
-using GameServer;
+ï»¿using GameServer;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// ³×Æ®¿öÅ©¸¦ ÅëÇØ ´Ù¾çÇÑ ÆĞÅ¶À» »ı¼ºÇÏ¿© Àü¼ÛÀ» Á¤ÀÇÇÏ´Â Å¬·¡½º
+// ë„¤íŠ¸ì›Œí¬ë¥¼ í†µí•´ ë‹¤ì–‘í•œ íŒ¨í‚·ì„ ìƒì„±í•˜ì—¬ ì „ì†¡ì„ ì •ì˜í•˜ëŠ” í´ë˜ìŠ¤
 
 public class ClientSend : MonoBehaviour
 {
-    // ¾Æ·¡ÀÇ Send ¸Ş¼­µå µéÀº Àü¼ÛÇÒ ÆĞÅ¶À»À» ÁØºñÇÏ´Â ¸Ş¼Òµå
-    // Å¬¶óÀÌ¾ğÆ® ¹öÆÛ¿¡ Àü´Ş¹ŞÀº ÆĞÅ¶ µ¥ÀÌÅÍ¸¦ ÀúÀå
+    // ì•„ë˜ì˜ Send ë©”ì„œë“œ ë“¤ì€ ì „ì†¡í•  íŒ¨í‚·ì„ì„ ì¤€ë¹„í•˜ëŠ” ë©”ì†Œë“œ
+    // í´ë¼ì´ì–¸íŠ¸ ë²„í¼ì— ì „ë‹¬ë°›ì€ íŒ¨í‚· ë°ì´í„°ë¥¼ ì €ì¥
 
-    // Áß¿äÇÑ Á¤º¸´Â TCP¸¦ ÀÌ¿ëÇÏ°í
-    // ¹İ´ë·Î Áß¿äÇÏÁö ¾Ê°Å³ª ºü¸£°Ô Åë½ÅÀÌ ÇÊ¿äÇÑ °æ¿ì´Â UDP¸¦ »ç¿ë
-    // ¶Ç Áö¼ÓÀûÀ¸·Î µ¥ÀÌÅÍ¸¦ Àü¼ÛÇÏ´Â °æ¿ì µ¥ÀÌÅÍ¸¦ ÀÒ¾îµµ °è¼Ó Àü¼ÛÇÏ±â¿¡ UDP¸¦ »ç¿ë
+    // ì¤‘ìš”í•œ ì •ë³´ëŠ” TCPë¥¼ ì´ìš©í•˜ê³ 
+    // ë°˜ëŒ€ë¡œ ì¤‘ìš”í•˜ì§€ ì•Šê±°ë‚˜ ë¹ ë¥´ê²Œ í†µì‹ ì´ í•„ìš”í•œ ê²½ìš°ëŠ” UDPë¥¼ ì‚¬ìš©
+    // ë˜ ì§€ì†ì ìœ¼ë¡œ ë°ì´í„°ë¥¼ ì „ì†¡í•˜ëŠ” ê²½ìš° ë°ì´í„°ë¥¼ ìƒì–´ë„ ê³„ì† ì „ì†¡í•˜ê¸°ì— UDPë¥¼ ì‚¬ìš©
 
-    private static void SendTCPData(Packet packet) // ÆĞÅ¶ Àü´Ş
+    private static void SendTCPData(Packet packet) // íŒ¨í‚· ì „ë‹¬
     {
         packet.WriteLength();
         Client.instance.tcp.SendData(packet);
     }
 
-    private static void SendUDPData(Packet packet) // ÆĞÅ¶ Àü´Ş
+    private static void SendUDPData(Packet packet) // íŒ¨í‚· ì „ë‹¬
     {
         packet.WriteLength();
         Client.instance.udp.SendData(packet);
     }
 
     #region Packet
-    public static void WelcomeReceived() // Å¬¶óÀÌ¾ğÆ®°¡ È¯¿µ ¸Ş¼¼Áö¸¦ ¹ŞÀ¸¸é ¼­¹ö·Î º¸³¾ ÆĞÅ¶À» »ı¼º
+    public static void WelcomeReceived() // í´ë¼ì´ì–¸íŠ¸ê°€ í™˜ì˜ ë©”ì„¸ì§€ë¥¼ ë°›ìœ¼ë©´ ì„œë²„ë¡œ ë³´ë‚¼ íŒ¨í‚·ì„ ìƒì„±
     {
         using (Packet packet = new Packet((int)ClientPackets.welcomeReceived))
         {
@@ -38,7 +38,7 @@ public class ClientSend : MonoBehaviour
         }
     }
 
-    public static void PlayerMovement(bool[] inputs) // ÇÃ·¹ÀÌ¾î°¡ ÀÔ·ÂÇÑ ÀÌµ¿ µ¥ÀÌÅÍ ÆĞÅ¶ »ı¼ºÈÄ Àü¼Û
+    public static void PlayerMovement(bool[] inputs) // í”Œë ˆì´ì–´ê°€ ì…ë ¥í•œ ì´ë™ ë°ì´í„° íŒ¨í‚· ìƒì„±í›„ ì „ì†¡
     {
         using (Packet packet = new Packet((int)ClientPackets.playerMovement))
         {

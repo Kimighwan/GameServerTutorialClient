@@ -1,14 +1,14 @@
-using GameServer;
+ï»¿using GameServer;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using Unity.VisualScripting;
 using UnityEngine;
 
-// ÆĞÅ¶À» ÀĞ´Â ÇÔ¼ö¸¦ Á¤ÀÇÇÑ Å¬·¡½º
+// íŒ¨í‚·ì„ ì½ëŠ” í•¨ìˆ˜ë¥¼ ì •ì˜í•œ í´ë˜ìŠ¤
 
-// ¸Å°³º¯¼ö·Î ÆĞÅ¶À» ¹Ş¾Æ ÇØ´ç ÆĞÅ¶ÀÇ µ¥ÀÌÅÍ¸¦ ÀĞ´Â´Ù.
-// ÀĞÀº µ¥ÀÌÅÍ¸¦ È°¿ëÇÏ¿© °¢ ÇÔ¼ö¿¡ ¸ñÀû¿¡ ¸Â°Ô »ç¿ëÇÑ´Ù.
+// ë§¤ê°œë³€ìˆ˜ë¡œ íŒ¨í‚·ì„ ë°›ì•„ í•´ë‹¹ íŒ¨í‚·ì˜ ë°ì´í„°ë¥¼ ì½ëŠ”ë‹¤.
+// ì½ì€ ë°ì´í„°ë¥¼ í™œìš©í•˜ì—¬ ê° í•¨ìˆ˜ì— ëª©ì ì— ë§ê²Œ ì‚¬ìš©í•œë‹¤.
 
 public class ClientHandle : MonoBehaviour
 {
@@ -17,11 +17,11 @@ public class ClientHandle : MonoBehaviour
         string m = packet.ReadString();
         int id = packet.ReadInt();
 
-        Debug.Log($"¼­¹ö¿¡¼­ ¹ŞÀº ¸Ş¼¼Áö : {m}");
+        Debug.Log($"ì„œë²„ì—ì„œ ë°›ì€ ë©”ì„¸ì§€ : {m}");
         Client.instance.id = id;
         ClientSend.WelcomeReceived();
 
-        Client.instance.udp.Connect(((IPEndPoint)Client.instance.tcp.socket.Client.LocalEndPoint).Port); // tcp·Î ¹ÙÀÎµùµÈ Æ÷Æ® ¹øÈ£·Î udp ¿¬°á
+        Client.instance.udp.Connect(((IPEndPoint)Client.instance.tcp.socket.Client.LocalEndPoint).Port); // tcpë¡œ ë°”ì¸ë”©ëœ í¬íŠ¸ ë²ˆí˜¸ë¡œ udp ì—°ê²°
     }
 
     public static void SpawnPlayer(Packet packet)
@@ -82,19 +82,19 @@ public class ClientHandle : MonoBehaviour
         GameManager.instance.CreateItemSpawner(spawnerId, spawnerPos, hasItem);
     }
 
-    public static void ItemSpawned(Packet packet)   // ¾ÆÀÌÅÛ ÆĞÅ¶ µ¥ÀÌÅÍ ÀĞ±â
+    public static void ItemSpawned(Packet packet)   // ì•„ì´í…œ íŒ¨í‚· ë°ì´í„° ì½ê¸°
     {
         int spawnId = packet.ReadInt();
 
-        GameManager.itemSpawners[spawnId].ItemSpawned();    // ¾ÆÀÌÅÛ ID¸¦ ÀÌ¿ëÇÏ¿© ¾ÆÀÌÅÛ ¼ÒÈ¯
+        GameManager.itemSpawners[spawnId].ItemSpawned();    // ì•„ì´í…œ IDë¥¼ ì´ìš©í•˜ì—¬ ì•„ì´í…œ ì†Œí™˜
     }
 
-    public static void ItemPickedUp(Packet packet) // ¾ÆÀÌÅÛ È¹µæ Á¤º¸ ÆĞÅ¶ ÀĞ±â
+    public static void ItemPickedUp(Packet packet) // ì•„ì´í…œ íšë“ ì •ë³´ íŒ¨í‚· ì½ê¸°
     {
         int spawnId = packet.ReadInt();
         int byPlayer = packet.ReadInt();
 
-        GameManager.itemSpawners[spawnId].ItemPickedUp();   // ¾ÆÀÌÅÛ È¹µæÇßÀ» ¶§ µ¿ÀÛÇÏ´Â ÇÔ¼ö È£Ãâ
+        GameManager.itemSpawners[spawnId].ItemPickedUp();   // ì•„ì´í…œ íšë“í–ˆì„ ë•Œ ë™ì‘í•˜ëŠ” í•¨ìˆ˜ í˜¸ì¶œ
         GameManager.players[byPlayer].itemCount++;
     }
 

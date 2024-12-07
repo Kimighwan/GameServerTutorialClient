@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour
 {
     public PlayerManager player;
     
-    public float sensitivity = 150f; // °¨µµ
+    public float sensitivity = 150f; // ê°ë„
     public float clampAngel = 100f;
 
     private float verticalRoation;
@@ -21,7 +21,7 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
         Look();
-        Cursor.lockState = CursorLockMode.Locked;   // ¸¶¿ì½º Ä¿¼­¸¦ À©µµ¿ì Á¤Áß¾Ó¿¡ °íÁ¤, Ä¿¼­°¡ º¸ÀÌÁö ¾Ê°Ô ¼³Á¤
+        Cursor.lockState = CursorLockMode.Locked;   // ë§ˆìš°ìŠ¤ ì»¤ì„œë¥¼ ìœˆë„ìš° ì •ì¤‘ì•™ì— ê³ ì •, ì»¤ì„œê°€ ë³´ì´ì§€ ì•Šê²Œ ì„¤ì •
 
         Debug.DrawRay(transform.position, transform.forward * 2, Color.red);
     }

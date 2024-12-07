@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +8,7 @@ public class PlayerManager : MonoBehaviour
     public string userName;
     public float hp;
     public float maxHP;
-    public int itemCount = 0; // ÇØ´ç ÇÃ·¹ÀÌ¾î°¡ °¡Áö°í¤Ì ÀÖ´Â ¾ÆÀÌÅÛ °¹¼ö
+    public int itemCount = 0; // í•´ë‹¹ í”Œë ˆì´ì–´ê°€ ê°€ì§€ê³ ã…œ ìˆëŠ” ì•„ì´í…œ ê°¯ìˆ˜
     public MeshRenderer model;
 
     public void Initialize(int _id, string _userName)

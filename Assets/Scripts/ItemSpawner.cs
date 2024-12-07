@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,12 +17,12 @@ public class ItemSpawner : MonoBehaviour
         if(hasItem)
         {
             transform.Rotate(Vector3.up, itemRotationSpeed * Time.deltaTime, Space.World);
-            // Vector3.upÀ» ±âÁØÀ¸·Î È¸ÀüÇÏ´Â ÇÔ¼ö
-            // Vector3.up´Â (0, 1, 0)À» ÀÇ¹Ì
+            // Vector3.upì„ ê¸°ì¤€ìœ¼ë¡œ íšŒì „í•˜ëŠ” í•¨ìˆ˜
+            // Vector3.upëŠ” (0, 1, 0)ì„ ì˜ë¯¸
 
             transform.position = basePos + new Vector3(0f, 0.25f * Mathf.Sin(Time.time * itemBobSpeed), 0f);
-            // yÃàÀº sin ±×·¡ÇÁÀÇ yÃà º¯È­·®À» °¡Áü
-            // ½Ã°£¿¡ µû¶ó ¿ÀºêÁ§Æ®°¡ sinÇÔ¼ö º¯È­·®¿¡ µû¶ó À§¾Æ·¡·Î ¿òÁ÷ÀÎ´Ù
+            // yì¶•ì€ sin ê·¸ë˜í”„ì˜ yì¶• ë³€í™”ëŸ‰ì„ ê°€ì§
+            // ì‹œê°„ì— ë”°ë¼ ì˜¤ë¸Œì íŠ¸ê°€ siní•¨ìˆ˜ ë³€í™”ëŸ‰ì— ë”°ë¼ ìœ„ì•„ë˜ë¡œ ì›€ì§ì¸ë‹¤
         }
     }
 

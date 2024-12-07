@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,8 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public static Dictionary<int, PlayerManager> players = new Dictionary<int, PlayerManager>(); // ÇÃ·¹ÀÌ¾î ÄÁÅ×ÀÌ³Ê
-    public static Dictionary<int, ItemSpawner> itemSpawners = new Dictionary<int, ItemSpawner>(); // ¾ÆÀÌÅÛ ½ºÆ÷³Ê ÄÁÅ×ÀÌ³Ê
+    public static Dictionary<int, PlayerManager> players = new Dictionary<int, PlayerManager>(); // í”Œë ˆì´ì–´ ì»¨í…Œì´ë„ˆ
+    public static Dictionary<int, ItemSpawner> itemSpawners = new Dictionary<int, ItemSpawner>(); // ì•„ì´í…œ ìŠ¤í¬ë„ˆ ì»¨í…Œì´ë„ˆ
     public static Dictionary<int, ProjectileManager> projectiles = new Dictionary<int, ProjectileManager>();
 
     public GameObject localPlayerPrefab;
@@ -17,11 +17,11 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null) // ¾ÆÁ÷ ¸¸µé¾îÁöÁö ¾Ê¾Ò´Ù¸é ÇöÀç °´Ã¼ ÇÒ´ç
+        if (instance == null) // ì•„ì§ ë§Œë“¤ì–´ì§€ì§€ ì•Šì•˜ë‹¤ë©´ í˜„ì¬ ê°ì²´ í• ë‹¹
         {
             instance = this;
         }
-        else if (instance != this) // ÀÌ¹Ì Á¸ÀçÇÑ´Ù¸é ÇöÀç °´Ã¼ »èÁ¦
+        else if (instance != this) // ì´ë¯¸ ì¡´ì¬í•œë‹¤ë©´ í˜„ì¬ ê°ì²´ ì‚­ì œ
         {
             Destroy(this);
         }
@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
         players.Add(id, player.GetComponent<PlayerManager>());
     }
 
-    public void CreateItemSpawner(int spawnerId, Vector3 pos, bool hasItem) // ¾ÆÀÌÅÛ ½ºÆ÷³Ê¸¦ »ı¼ºÇÏ´Â ÇÔ¼ö
+    public void CreateItemSpawner(int spawnerId, Vector3 pos, bool hasItem) // ì•„ì´í…œ ìŠ¤í¬ë„ˆë¥¼ ìƒì„±í•˜ëŠ” í•¨ìˆ˜
     {
         GameObject spawner = Instantiate(itemSpawnerPrefab, pos, itemSpawnerPrefab.transform.rotation);
         spawner.GetComponent<ItemSpawner>().Initialize(spawnerId, hasItem);

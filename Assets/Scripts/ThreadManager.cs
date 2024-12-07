@@ -1,9 +1,9 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-// ÇÏ³ªÀÇ Æ¯Á¤ ½º·¹µå¿¡¼­ ½ÇÇàµÇµµ·Ï ÄÚµå¸¦ ¿¹¾àÇÑ´Ù
-// ½º·¹µå Ãæµ¹À» ¸·±â À§ÇÑ Å¬·¡½º
+// í•˜ë‚˜ì˜ íŠ¹ì • ìŠ¤ë ˆë“œì—ì„œ ì‹¤í–‰ë˜ë„ë¡ ì½”ë“œë¥¼ ì˜ˆì•½í•œë‹¤
+// ìŠ¤ë ˆë“œ ì¶©ëŒì„ ë§‰ê¸° ìœ„í•œ í´ë˜ìŠ¤
 
 public class ThreadManager : MonoBehaviour
 {
