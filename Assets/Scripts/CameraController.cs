@@ -20,11 +20,8 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-            ToggleCursorMode();
-
-        if (Cursor.lockState == CursorLockMode.Locked)
-            Look();
+        Look();
+        Cursor.lockState = CursorLockMode.Locked;   // 마우스 커서를 윈도우 정중앙에 고정, 커서가 보이지 않게 설정
 
         Debug.DrawRay(transform.position, transform.forward * 2, Color.red);
     }
@@ -42,15 +39,5 @@ public class CameraController : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(verticalRoation, 0f, 0f);
         player.transform.rotation = Quaternion.Euler(0f, horizontalRoation, 0f);
-    }
-
-    private void ToggleCursorMode()
-    {
-        Cursor.visible = !Cursor.visible;
-
-        if(Cursor.lockState == CursorLockMode.None)
-            Cursor.lockState = CursorLockMode.Locked;
-        else
-            Cursor.lockState = CursorLockMode.None;
     }
 }

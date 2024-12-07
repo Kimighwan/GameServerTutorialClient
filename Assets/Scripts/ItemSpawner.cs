@@ -17,8 +17,12 @@ public class ItemSpawner : MonoBehaviour
         if(hasItem)
         {
             transform.Rotate(Vector3.up, itemRotationSpeed * Time.deltaTime, Space.World);
+            // Vector3.up을 기준으로 회전하는 함수
+            // Vector3.up는 (0, 1, 0)을 의미
+
             transform.position = basePos + new Vector3(0f, 0.25f * Mathf.Sin(Time.time * itemBobSpeed), 0f);
             // y축은 sin 그래프의 y축 변화량을 가짐
+            // 시간에 따라 오브젝트가 sin함수 변화량에 따라 위아래로 움직인다
         }
     }
 

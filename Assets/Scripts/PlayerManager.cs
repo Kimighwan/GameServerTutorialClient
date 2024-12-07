@@ -8,7 +8,7 @@ public class PlayerManager : MonoBehaviour
     public string userName;
     public float hp;
     public float maxHP;
-    public int itemCount = 0;
+    public int itemCount = 0; // 해당 플레이어가 가지고ㅜ 있는 아이템 갯수
     public MeshRenderer model;
 
     public void Initialize(int _id, string _userName)

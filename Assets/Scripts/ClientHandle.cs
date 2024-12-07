@@ -5,6 +5,11 @@ using System.Net;
 using Unity.VisualScripting;
 using UnityEngine;
 
+// 패킷을 읽는 함수를 정의한 클래스
+
+// 매개변수로 패킷을 받아 해당 패킷의 데이터를 읽는다.
+// 읽은 데이터를 활용하여 각 함수에 목적에 맞게 사용한다.
+
 public class ClientHandle : MonoBehaviour
 {
     public static void Welcome(Packet packet)
@@ -77,19 +82,19 @@ public class ClientHandle : MonoBehaviour
         GameManager.instance.CreateItemSpawner(spawnerId, spawnerPos, hasItem);
     }
 
-    public static void ItemSpawned(Packet packet)
+    public static void ItemSpawned(Packet packet)   // 아이템 패킷 데이터 읽기
     {
         int spawnId = packet.ReadInt();
 
-        GameManager.itemSpawners[spawnId].ItemSpawned();
+        GameManager.itemSpawners[spawnId].ItemSpawned();    // 아이템 ID를 이용하여 아이템 소환
     }
 
-    public static void ItemPickedUp(Packet packet)
+    public static void ItemPickedUp(Packet packet) // 아이템 획득 정보 패킷 읽기
     {
         int spawnId = packet.ReadInt();
         int byPlayer = packet.ReadInt();
 
-        GameManager.itemSpawners[spawnId].ItemPickedUp();
+        GameManager.itemSpawners[spawnId].ItemPickedUp();   // 아이템 획득했을 때 동작하는 함수 호출
         GameManager.players[byPlayer].itemCount++;
     }
 

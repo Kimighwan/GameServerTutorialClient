@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Sockets;
 using System;
 using GameServer;
+using UnityEngine.UI;
 
 public class Client : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class Client : MonoBehaviour
     private bool isConnected = false;
     private delegate void PacketHandler(Packet packet);
     private static Dictionary<int, PacketHandler> packetHandlers;
+
+    public Image disConnectedUI;        // 서버 연결 끊김시 표시되는 UI
 
     private void Awake() // 유니티 엔진의 생명 주기 함수 -> 게임 실행시 초기에 한 번 실행되는 함수
     {

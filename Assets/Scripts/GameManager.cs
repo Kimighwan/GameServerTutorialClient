@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public static Dictionary<int, PlayerManager> players = new Dictionary<int, PlayerManager>(); // 플레이어 컨테이너
-    public static Dictionary<int, ItemSpawner> itemSpawners = new Dictionary<int, ItemSpawner>();
+    public static Dictionary<int, ItemSpawner> itemSpawners = new Dictionary<int, ItemSpawner>(); // 아이템 스포너 컨테이너
     public static Dictionary<int, ProjectileManager> projectiles = new Dictionary<int, ProjectileManager>();
 
     public GameObject localPlayerPrefab;
@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
         players.Add(id, player.GetComponent<PlayerManager>());
     }
 
-    public void CreateItemSpawner(int spawnerId, Vector3 pos, bool hasItem)
+    public void CreateItemSpawner(int spawnerId, Vector3 pos, bool hasItem) // 아이템 스포너를 생성하는 함수
     {
         GameObject spawner = Instantiate(itemSpawnerPrefab, pos, itemSpawnerPrefab.transform.rotation);
         spawner.GetComponent<ItemSpawner>().Initialize(spawnerId, hasItem);
