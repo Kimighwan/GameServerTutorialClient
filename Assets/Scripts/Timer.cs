@@ -9,6 +9,12 @@ public class Timer : MonoBehaviour
     public TextMeshProUGUI gameTimer;
 
     private bool isDone = false;
+    private float t;
+
+    private void Awake()
+    {
+        t = 60f;
+    }
 
     private void Update()
     {
@@ -18,6 +24,18 @@ public class Timer : MonoBehaviour
             {
                 isDone = true;
                 StartCoroutine(StartTimer());
+            }
+        }
+
+        if (GameManager.instance.gameStart)
+        {
+            t -= Time.deltaTime;
+            gameTimer.text = string.Format("{0:N2}", t);
+
+            if(t <= 0f)
+            {
+                gameTimer.gameObject.SetActive(false);
+                GameManager.instance.gameStart = false;
             }
         }
     }
@@ -34,12 +52,9 @@ public class Timer : MonoBehaviour
         startTimer.text = "1...";
 
         yield return new WaitForSeconds(1f);
+
         startTimer.gameObject.SetActive(false);
+        gameTimer.gameObject.SetActive(true);
         GameManager.instance.gameStart = true;
-    }
-
-    private void Time()
-    {
-
     }
 }
