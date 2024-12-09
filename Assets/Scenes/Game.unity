@@ -4317,6 +4317,7 @@ MonoBehaviour:
   ip: 127.0.0.1
   port: 33374
   id: 0
+  disConnectedUI: {fileID: 0}
 --- !u!4 &1460733187
 Transform:
   m_ObjectHideFlags: 0
@@ -4482,7 +4483,7 @@ MonoBehaviour:
   localPlayerPrefab: {fileID: 1956365267530151352, guid: 4567bd468231fb545a0a011f011be541, type: 3}
   playerPrefab: {fileID: 1956365267530151352, guid: 4f16df08fcd4f99438457c5b4a7bae51, type: 3}
   itemSpawnerPrefab: {fileID: 5345701804994222567, guid: 24531839ad8c3ff4a9fceeeb9a63a89f, type: 3}
-  projectilePrefab: {fileID: 6125745697530060056, guid: ba6a7f4c4a1ab774eb99ac40f2afeaca, type: 3}
+  projectilePrefab: {fileID: 1407679563346280102, guid: 9c2b12dffa3a9da4ebde905f9ae2b9e1, type: 3}
 --- !u!4 &1557293414
 Transform:
   m_ObjectHideFlags: 0
