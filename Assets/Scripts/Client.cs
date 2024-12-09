@@ -276,7 +276,7 @@ public class Client : MonoBehaviour
 
     private void InitClientData()
     {
-        packetHandlers = new Dictionary<int, PacketHandler>()
+        packetHandlers = new Dictionary<int, PacketHandler>()   // 패킷을 받음
         {
             {(int)ServerPackets.welcome, ClientHandle.Welcome },
             {(int)ServerPackets.spawnPlayer, ClientHandle.SpawnPlayer },
@@ -291,6 +291,7 @@ public class Client : MonoBehaviour
             {(int)ServerPackets.spawnProjectile , ClientHandle.SpawnProjectile },
             {(int)ServerPackets.projectilePostion , ClientHandle.ProjectilePosition},
             {(int)ServerPackets.projectileExploded , ClientHandle.ProjectileExploded},
+            {(int)ServerPackets.playerCheck , ClientHandle.PlayerCheck},
         };
         Debug.Log("Init Packet");
     }

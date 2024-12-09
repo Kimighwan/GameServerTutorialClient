@@ -21,6 +21,7 @@ namespace GameServer
         spawnProjectile,
         projectilePostion,
         projectileExploded,
+        playerCheck,
     }
 
     /// <summary>Sent from client to server.</summary>

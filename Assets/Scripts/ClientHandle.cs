@@ -123,4 +123,11 @@ public class ClientHandle : MonoBehaviour
 
         GameManager.projectiles[projectileId].Explode(pos);
     }
+
+    public static void PlayerCheck(Packet packet)
+    {
+        bool check = packet.ReadBool();
+
+        GameManager.instance.playerCheck = check;
+    }
 }

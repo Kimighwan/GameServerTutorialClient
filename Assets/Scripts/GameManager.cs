@@ -15,6 +15,10 @@ public class GameManager : MonoBehaviour
     public GameObject itemSpawnerPrefab;
     public GameObject projectilePrefab;
 
+    public Transform[] playerSpawner;   // 플레이어 스폰 위치
+    public bool playerCheck = false;    // 플레이어가 두 명 접속했는가?
+    public bool gameStart = false;
+
     private void Awake()
     {
         if (instance == null) // 아직 만들어지지 않았다면 현재 객체 할당
@@ -32,11 +36,11 @@ public class GameManager : MonoBehaviour
         GameObject player;
         if(id == Client.instance.id)
         {
-            player = Instantiate(localPlayerPrefab, position, rotation);
+            player = Instantiate(localPlayerPrefab, playerSpawner[id % 2].position, rotation);
         }
         else
         {
-            player = Instantiate(playerPrefab, position, rotation);
+            player = Instantiate(playerPrefab, playerSpawner[id % 2].position, rotation);
         }
 
         player.GetComponent<PlayerManager>().Initialize(id, userName);

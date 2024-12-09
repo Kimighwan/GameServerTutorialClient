@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (!GameManager.instance.gameStart) return;
+
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
             ClientSend.PlayerShoot(camTransform.forward);
@@ -20,6 +22,8 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (!GameManager.instance.gameStart) return;
+
         SendInputToServer();
     }
 
