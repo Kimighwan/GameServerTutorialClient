@@ -1,9 +1,9 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-// Å¸ÀÌ¸Ó °ü·Ã Å¬·¡½º
+// íƒ€ì´ë¨¸ ê´€ë ¨ í´ë˜ìŠ¤
 
 public class Timer : MonoBehaviour
 {
@@ -22,19 +22,19 @@ public class Timer : MonoBehaviour
     {
         if(!isDone)
         {
-            if (GameManager.instance.playerCheck)   // ÇÃ·¹ÀÌ¾î 2¸íÀÌ Á¢¼ÓÇÏ¸é Å¸ÀÌ¸Ó ½ÃÀÛ
+            if (GameManager.instance.playerCheck)   // í”Œë ˆì´ì–´ 2ëª…ì´ ì ‘ì†í•˜ë©´ íƒ€ì´ë¨¸ ì‹œì‘
             {
                 isDone = true;
                 StartCoroutine(StartTimer());
             }
         }
 
-        if (GameManager.instance.gameStart)      // 60ÃÊ Ä«¿îÆ® ´Ù¿î ½ÃÀÛ
+        if (GameManager.instance.gameStart)      // 60ì´ˆ ì¹´ìš´íŠ¸ ë‹¤ìš´ ì‹œì‘
         {
             t -= Time.deltaTime;
             gameTimer.text = string.Format("{0:N2}", t);
 
-            if(t <= 0f)                         // ½ÂÆĞ °á°ú Áı°è ¹× °ÔÀÓ Á¾·á¿¡ µû¸¥ UI Ã³¸®
+            if(t <= 0f)                         // ìŠ¹íŒ¨ ê²°ê³¼ ì§‘ê³„ ë° ê²Œì„ ì¢…ë£Œì— ë”°ë¥¸ UI ì²˜ë¦¬
             {
                 gameTimer.gameObject.SetActive(false);
                 GameManager.instance.gameStart = false;
@@ -44,7 +44,7 @@ public class Timer : MonoBehaviour
         }
     }
 
-    public IEnumerator StartTimer()         // 3ÃÊ ÈÄ Å¸ÀÌ¸Ó 60ÃÊ Ä«¿îÅÍ ½ÃÀÛ
+    public IEnumerator StartTimer()         // 3ì´ˆ í›„ íƒ€ì´ë¨¸ 60ì´ˆ ì¹´ìš´í„° ì‹œì‘
     {
         startTimer.gameObject.SetActive(true);
         startTimer.text = "3...";
