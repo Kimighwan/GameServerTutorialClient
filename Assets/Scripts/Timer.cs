@@ -13,7 +13,7 @@ public class Timer : MonoBehaviour
 
     private void Awake()
     {
-        t = 60f;
+        t = 10f;
     }
 
     private void Update()
@@ -36,6 +36,7 @@ public class Timer : MonoBehaviour
             {
                 gameTimer.gameObject.SetActive(false);
                 GameManager.instance.gameStart = false;
+                GameManager.instance.gameEnd = true;
             }
         }
     }

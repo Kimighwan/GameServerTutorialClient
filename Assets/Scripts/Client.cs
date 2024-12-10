@@ -292,6 +292,7 @@ public class Client : MonoBehaviour
             {(int)ServerPackets.projectilePostion , ClientHandle.ProjectilePosition},
             {(int)ServerPackets.projectileExploded , ClientHandle.ProjectileExploded},
             {(int)ServerPackets.playerCheck , ClientHandle.PlayerCheck},
+            {(int)ServerPackets.gameResult , ClientHandle.GmaeResult},
         };
         Debug.Log("Init Packet");
     }

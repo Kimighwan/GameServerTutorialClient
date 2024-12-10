@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -18,6 +19,10 @@ public class GameManager : MonoBehaviour
     public Transform[] playerSpawner;   // 플레이어 스폰 위치
     public bool playerCheck = false;    // 플레이어가 두 명 접속했는가?
     public bool gameStart = false;
+    public bool gameEnd = false;
+    public bool gameResult = false;
+
+    public TextMeshProUGUI result;
 
     private void Awake()
     {
@@ -31,16 +36,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (gameEnd)
+            result.gameObject.SetActive(true);
+    }
+
     public void SpawnPlayer(int id, string userName, Vector3 position, Quaternion rotation)
     {
         GameObject player;
         if(id == Client.instance.id)
         {
-            player = Instantiate(localPlayerPrefab, playerSpawner[id % 2].position, rotation);
+            player = Instantiate(localPlayerPrefab, position, rotation);
         }
         else
         {
-            player = Instantiate(playerPrefab, playerSpawner[id % 2].position, rotation);
+            player = Instantiate(playerPrefab, position, rotation);
         }
 
         player.GetComponent<PlayerManager>().Initialize(id, userName);

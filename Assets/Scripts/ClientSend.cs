@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
 
 // 네트워크를 통해 다양한 패킷을 생성하여 전송을 정의하는 클래스
 
@@ -71,6 +72,16 @@ public class ClientSend : MonoBehaviour
             packet.Write(facing);
 
             SendTCPData(packet);
+        }
+    }
+
+    public static void PlayerDieCount(int count)
+    {
+        using (Packet packet = new Packet((int)ClientPackets.playerDieCount))
+        {
+            packet.Write(count);
+
+            SendUDPData(packet);
         }
     }
     #endregion
