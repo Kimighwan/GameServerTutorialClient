@@ -22,7 +22,8 @@ namespace GameServer
         projectilePostion,
         projectileExploded,
         playerCheck,
-        gameResult,
+        //gameResult,
+        playerDieCount,
     }
 
     /// <summary>Sent from client to server.</summary>
@@ -32,7 +33,6 @@ namespace GameServer
         playerMovement,
         playerShoot,
         playerThrowItem,
-        playerDieCount,
     }
 
     public class Packet : IDisposable

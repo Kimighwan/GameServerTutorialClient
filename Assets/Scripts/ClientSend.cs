@@ -74,15 +74,5 @@ public class ClientSend : MonoBehaviour
             SendTCPData(packet);
         }
     }
-
-    public static void PlayerDieCount(int count)
-    {
-        using (Packet packet = new Packet((int)ClientPackets.playerDieCount))
-        {
-            packet.Write(count);
-
-            SendUDPData(packet);
-        }
-    }
     #endregion
 }

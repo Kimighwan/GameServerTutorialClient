@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,7 @@ public class UIManager : MonoBehaviour
 
     public GameObject start; // 버튼과 userNameField 필드칸의 오브젝트
     public InputField userNameField; // 유저 이름을 적는 필드 칸
+    public TextMeshProUGUI result;
 
     private void Awake()
     {

@@ -37,6 +37,7 @@ public class Timer : MonoBehaviour
                 gameTimer.gameObject.SetActive(false);
                 GameManager.instance.gameStart = false;
                 GameManager.instance.gameEnd = true;
+                GameManager.instance.GameResult();
             }
         }
     }

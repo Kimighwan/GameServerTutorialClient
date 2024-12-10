@@ -22,8 +22,6 @@ public class Client : MonoBehaviour
     private delegate void PacketHandler(Packet packet);
     private static Dictionary<int, PacketHandler> packetHandlers;
 
-    public Image disConnectedUI;        // 서버 연결 끊김시 표시되는 UI
-
     private void Awake() // 유니티 엔진의 생명 주기 함수 -> 게임 실행시 초기에 한 번 실행되는 함수
     {
         if (instance == null) // 아직 만들어지지 않았다면 현재 객체 할당
@@ -292,7 +290,8 @@ public class Client : MonoBehaviour
             {(int)ServerPackets.projectilePostion , ClientHandle.ProjectilePosition},
             {(int)ServerPackets.projectileExploded , ClientHandle.ProjectileExploded},
             {(int)ServerPackets.playerCheck , ClientHandle.PlayerCheck},
-            {(int)ServerPackets.gameResult , ClientHandle.GmaeResult},
+            //{(int)ServerPackets.gameResult , ClientHandle.GmaeResult},
+            {(int)ServerPackets.playerDieCount , ClientHandle.PlayerDieCount},
         };
         Debug.Log("Init Packet");
     }

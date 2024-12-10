@@ -1307,6 +1307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   start: {fileID: 647506030}
   userNameField: {fileID: 163590}
+  result: {fileID: 1217513385}
 --- !u!1001 &433803482
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4652,7 +4653,6 @@ MonoBehaviour:
   ip: 127.0.0.1
   port: 33374
   id: 0
-  disConnectedUI: {fileID: 0}
 --- !u!4 &1460733187
 Transform:
   m_ObjectHideFlags: 0
@@ -4827,7 +4827,6 @@ MonoBehaviour:
   gameStart: 0
   gameEnd: 0
   gameResult: 0
-  result: {fileID: 1217513385}
 --- !u!4 &1557293414
 Transform:
   m_ObjectHideFlags: 0

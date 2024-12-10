@@ -22,8 +22,6 @@ public class GameManager : MonoBehaviour
     public bool gameEnd = false;
     public bool gameResult = false;
 
-    public TextMeshProUGUI result;
-
     private void Awake()
     {
         if (instance == null) // 아직 만들어지지 않았다면 현재 객체 할당
@@ -36,11 +34,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (gameEnd)
-            result.gameObject.SetActive(true);
-    }
 
     public void SpawnPlayer(int id, string userName, Vector3 position, Quaternion rotation)
     {
@@ -70,5 +63,32 @@ public class GameManager : MonoBehaviour
         GameObject projectile = Instantiate(projectilePrefab, pos, Quaternion.identity);
         projectile.GetComponent<ProjectileManager>().Initialize(id);
         projectiles.Add(id, projectile.GetComponent<ProjectileManager>());
+    }
+
+    public void GameResult()
+    {
+        int player1DieCount = players[1].dieCount;
+        int player2DieCount = players[2].dieCount;
+
+        if(player1DieCount > player2DieCount)   // 1번 플레이어가 더 많이 죽음 ==> 2번 플레이어가 승리
+        {
+            if(Client.instance.id == 1)
+                UIManager.instance.result.text = "Lose...";
+            else
+                UIManager.instance.result.text = "Win!!!";
+        }
+        else if(player1DieCount < player2DieCount)
+        {
+            if (Client.instance.id == 2)
+                UIManager.instance.result.text = "Lose...";
+            else
+                UIManager.instance.result.text = "Win!!!";
+        }
+        else    // 무승부
+        {
+            UIManager.instance.result.text = "Draw";
+        }
+
+        UIManager.instance.result.gameObject.SetActive(true);
     }
 }

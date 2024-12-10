@@ -131,10 +131,17 @@ public class ClientHandle : MonoBehaviour
         GameManager.instance.playerCheck = check;
     }
 
-    public static void GmaeResult(Packet packet)
-    {
-        bool gameResult = packet.ReadBool();
+    //public static void GmaeResult(Packet packet)
+    //{
+    //    bool gameResult = packet.ReadBool();
 
-        GameManager.instance.gameResult = gameResult;
+    //    GameManager.instance.gameResult = gameResult;
+    //}
+
+    public static void PlayerDieCount(Packet packet)
+    {
+        int id = packet.ReadInt();
+
+        GameManager.players[id].dieCount++;
     }
 }
