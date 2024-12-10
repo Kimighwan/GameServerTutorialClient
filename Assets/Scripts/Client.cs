@@ -278,8 +278,8 @@ public class Client : MonoBehaviour
         {
             {(int)ServerPackets.welcome, ClientHandle.Welcome },
             {(int)ServerPackets.spawnPlayer, ClientHandle.SpawnPlayer },
-            {(int)ServerPackets.playerRotation, ClientHandle.PlayerRotation },
             {(int)ServerPackets.playerPosition, ClientHandle.PlayerPosition },
+            {(int)ServerPackets.playerRotation, ClientHandle.PlayerRotation },
             {(int)ServerPackets.playerDisconnected, ClientHandle.PlayerDisconnected },
             {(int)ServerPackets.playerHP, ClientHandle.PlayerHP },
             {(int)ServerPackets.playerReSpawned, ClientHandle.PlayerReSpawned },
@@ -290,7 +290,6 @@ public class Client : MonoBehaviour
             {(int)ServerPackets.projectilePostion , ClientHandle.ProjectilePosition},
             {(int)ServerPackets.projectileExploded , ClientHandle.ProjectileExploded},
             {(int)ServerPackets.playerCheck , ClientHandle.PlayerCheck},
-            //{(int)ServerPackets.gameResult , ClientHandle.GmaeResult},
             {(int)ServerPackets.playerDieCount , ClientHandle.PlayerDieCount},
         };
         Debug.Log("Init Packet");

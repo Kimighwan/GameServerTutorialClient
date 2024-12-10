@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour
@@ -11,6 +12,13 @@ public class ItemSpawner : MonoBehaviour
     public float itemRotationSpeed = 50f;
     public float itemBobSpeed = 2f;
     private Vector3 basePos;
+
+    public GameObject particle;
+
+    private void Awake()
+    {
+        particle.transform.localPosition = Vector3.zero;
+    }
 
     private void Update()
     {

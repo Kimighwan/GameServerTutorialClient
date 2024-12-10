@@ -25,7 +25,6 @@ namespace GameServer
         projectilePostion,
         projectileExploded,
         playerCheck,
-        //gameResult,
         playerDieCount,
     } // 서버가 전송하는 패킷 종류  
 
