@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// 카메라 컨트롤러
+
 public class CameraController : MonoBehaviour
 {
     public PlayerManager player;
@@ -22,11 +24,9 @@ public class CameraController : MonoBehaviour
     {
         Look();
         Cursor.lockState = CursorLockMode.Locked;   // 마우스 커서를 윈도우 정중앙에 고정, 커서가 보이지 않게 설정
-
-        Debug.DrawRay(transform.position, transform.forward * 2, Color.red);
     }
 
-    private void Look()
+    private void Look()     // 마우스 움직임에 따라 카메라 회전
     {
         float mouseVertical = -Input.GetAxis("Mouse Y");
         float mouseHorizontal = Input.GetAxis("Mouse X");
