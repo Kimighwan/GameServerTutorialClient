@@ -15,7 +15,7 @@ public class Timer : MonoBehaviour
 
     private void Awake()
     {
-        t = 60f;
+        t = 60f;    // 타이머 시간 설정 ==> 60초
     }
 
     private void Update()
@@ -37,9 +37,12 @@ public class Timer : MonoBehaviour
             if(t <= 0f)                         // 승패 결과 집계 및 게임 종료에 따른 UI 처리
             {
                 gameTimer.gameObject.SetActive(false);
+
+                // 아래 두 코드는 게임 종료에 따른 상태 변수 설정
                 GameManager.instance.gameStart = false;
                 GameManager.instance.gameEnd = true;
-                GameManager.instance.GameResult();
+
+                GameManager.instance.GameResult();  // 게임 결과 UI 송출
             }
         }
     }

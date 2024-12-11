@@ -31,9 +31,9 @@ public class ClientSend : MonoBehaviour
 
     #region Packet // 패킷에 필요한 데이터를 입력 // 위의 적절한 전송 메서드를 통해서 전송
 
-    public static void WelcomeReceived() // 최초 접속시 클라이언트 ID와 플레이어 이름을 담은 패킷
+    public static void Init() // 최초 접속시 클라이언트 ID와 플레이어 이름을 담은 패킷
     {
-        using (Packet packet = new Packet((int)ClientPackets.welcomeReceived))
+        using (Packet packet = new Packet((int)ClientPackets.init))
         {
             packet.Write(Client.instance.id);
             packet.Write(UIManager.instance.userNameField.text);

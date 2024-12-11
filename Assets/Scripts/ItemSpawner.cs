@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+// 아이템 스포너 클래스
+
 public class ItemSpawner : MonoBehaviour
 {
     public int spawnerId;
@@ -15,7 +17,7 @@ public class ItemSpawner : MonoBehaviour
 
     public GameObject particle;
 
-    private void Awake()
+    private void Awake()    // 초기 위치 설정
     {
         particle.transform.localPosition = Vector3.zero;
     }
@@ -34,7 +36,7 @@ public class ItemSpawner : MonoBehaviour
         }
     }
 
-    public void Initialize(int _spawnerId, bool _hasItem)
+    public void Initialize(int _spawnerId, bool _hasItem)   // 스포너 설정값 할당
     {
         spawnerId = _spawnerId;
         hasItem = _hasItem;
@@ -43,13 +45,13 @@ public class ItemSpawner : MonoBehaviour
         basePos = transform.position;
     }
 
-    public void ItemSpawned()
+    public void ItemSpawned()   // 아이템 스폰
     {
         hasItem = true;
         itemModel.enabled = true;
     }
 
-    public void ItemPickedUp()
+    public void ItemPickedUp()  // 아이템 누군가에 의해 획득됨
     {
         hasItem = false;
         itemModel.enabled = false;

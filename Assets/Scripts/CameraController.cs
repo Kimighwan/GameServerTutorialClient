@@ -37,7 +37,7 @@ public class CameraController : MonoBehaviour
 
         verticalRoation = Mathf.Clamp(verticalRoation, - clampAngel, clampAngel);
 
-        transform.localRotation = Quaternion.Euler(verticalRoation, 0f, 0f);
-        player.transform.rotation = Quaternion.Euler(0f, horizontalRoation, 0f);
+        transform.localRotation = Quaternion.Euler(verticalRoation, 0f, 0f);        // 수평 회전
+        player.transform.rotation = Quaternion.Euler(0f, horizontalRoation, 0f);    // 수직 회전
     }
 }

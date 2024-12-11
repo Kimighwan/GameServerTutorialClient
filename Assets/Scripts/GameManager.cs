@@ -3,23 +3,27 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+// 게임 전반적인 관리 클래스
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
     public static Dictionary<int, PlayerManager> players = new Dictionary<int, PlayerManager>(); // 플레이어 컨테이너
     public static Dictionary<int, ItemSpawner> itemSpawners = new Dictionary<int, ItemSpawner>(); // 아이템 스포너 컨테이너
-    public static Dictionary<int, ProjectileManager> projectiles = new Dictionary<int, ProjectileManager>();
+    public static Dictionary<int, ProjectileManager> projectiles = new Dictionary<int, ProjectileManager>(); // 수류탄 컨테이너
 
+    // 인스턴스화를 위한 객체들
     public GameObject localPlayerPrefab;
     public GameObject playerPrefab;
     public GameObject itemSpawnerPrefab;
     public GameObject projectilePrefab;
+    public GameObject bulletPrefab;
 
     public Transform[] playerSpawner;   // 플레이어 스폰 위치
     public bool playerCheck = false;    // 플레이어가 두 명 접속했는가?
-    public bool gameStart = false;
-    public bool gameEnd = false;
+    public bool gameStart = false;      // 게임 시작 상태 변수
+    public bool gameEnd = false;        // 게임 종료 상태 변수
     public bool gameResult = false;
 
     private void Awake()
@@ -35,7 +39,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void SpawnPlayer(int id, string userName, Vector3 position, Quaternion rotation)
+    public void SpawnPlayer(int id, string userName, Vector3 position, Quaternion rotation) // 플레이어 생성
     {
         GameObject player;
         if(id == Client.instance.id)
@@ -58,14 +62,14 @@ public class GameManager : MonoBehaviour
         itemSpawners.Add(spawnerId, spawner.GetComponent<ItemSpawner>());
     }
 
-    public void SpawnProjectile(int id, Vector3 pos)
+    public void SpawnProjectile(int id, Vector3 pos) // 슈류탄 생성
     {
         GameObject projectile = Instantiate(projectilePrefab, pos, Quaternion.identity);
         projectile.GetComponent<ProjectileManager>().Initialize(id);
         projectiles.Add(id, projectile.GetComponent<ProjectileManager>());
     }
 
-    public void GameResult()
+    public void GameResult()    // 게임 결과 집계
     {
         int player1DieCount = players[1].dieCount;
         int player2DieCount = players[2].dieCount;
@@ -89,6 +93,6 @@ public class GameManager : MonoBehaviour
             UIManager.instance.result.text = "Draw";
         }
 
-        UIManager.instance.result.gameObject.SetActive(true);
+        UIManager.instance.result.gameObject.SetActive(true);   // UI 송출
     }
 }

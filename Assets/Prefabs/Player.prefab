@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5275172234515402760}
   - component: {fileID: 1728248240563055084}
+  - component: {fileID: -6400227522146943846}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -51,7 +52,31 @@ MonoBehaviour:
   hp: 0
   maxHP: 100
   itemCount: 0
+  dieCount: 0
   model: {fileID: 977954819709280900}
+--- !u!136 &-6400227522146943846
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956365267530151352}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7044607355982565298
 GameObject:
   m_ObjectHideFlags: 0

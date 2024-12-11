@@ -7,6 +7,12 @@ using System;
 using GameServer;
 using UnityEngine.UI;
 
+// 클라이언트 관리 클래스
+// 클라이언트 정보를 저장하는 클래스
+
+// 서버 파일에 있는 Client 클래스와 유사합니다.
+// 서버 파일에 있는 스크립트들을 먼저 보시면 더 보기 편합니다.
+
 public class Client : MonoBehaviour
 {
     public static Client instance; // 싱글턴 패턴
@@ -18,9 +24,9 @@ public class Client : MonoBehaviour
     public TCP tcp; // tcp 소켓 클래스 아래에서 직접 생성
     public UDP udp; // udp 소켓 클래스 아래에서 직접 생성
 
-    private bool isConnected = false;
+    private bool isConnected = false;   // 연결되어 있는가?
     private delegate void PacketHandler(Packet packet);
-    private static Dictionary<int, PacketHandler> packetHandlers;
+    private static Dictionary<int, PacketHandler> packetHandlers;   // 패킷 컨테이너
 
     private void Awake() // 유니티 엔진의 생명 주기 함수 -> 게임 실행시 초기에 한 번 실행되는 함수
     {
@@ -34,13 +40,6 @@ public class Client : MonoBehaviour
         }
     }
 
-
-    void Start() // 시작시 동작하는 생명 주기 함수
-    {
-        tcp = new TCP();
-        udp = new UDP();
-    }
-
     private void OnApplicationQuit() // 게임 종료시 작동하는 유니티 엔진의 함수
     {
         Disconnect();
@@ -48,21 +47,24 @@ public class Client : MonoBehaviour
 
     public void ConnectionServer() // 서버와 연결 시작
     {
+        tcp = new TCP();
+        udp = new UDP();
+
         InitClientData();
 
         isConnected = true; // 연결 상태로 변경
         tcp.Connect();
     }
 
-    public class TCP
+    public class TCP    // TCP 클래스
     {
         public TcpClient socket; // tcp 소켓
 
         private NetworkStream stream;
         private Packet receiveData;
-        private byte[] receiveBuffer;
+        private byte[] receiveBuffer;   // 수신받을 데이터를 바이트 단위로 받는 버퍼
 
-        public void Connect()
+        public void Connect() // 연결 준비
         {
             socket = new TcpClient()
             {
@@ -88,7 +90,7 @@ public class Client : MonoBehaviour
             stream.BeginRead(receiveBuffer, 0, bufferSize, ReceiveCallBack, null); // 스트림을 통해 읽은 데이터를 버퍼에 저장
         }
 
-        public void SendData(Packet packet)
+        public void SendData(Packet packet) // 패킷 읽기
         {
             try
             {
@@ -170,7 +172,7 @@ public class Client : MonoBehaviour
             return false;
         }
 
-        private void Disconnect()
+        private void Disconnect()   // 연결 해제
         {
             instance.Disconnect();
 
@@ -181,19 +183,19 @@ public class Client : MonoBehaviour
         }
     }
 
-    public class UDP
+    public class UDP    // UDP 클래스
     {
         public UdpClient socket; // udp 소켓
         public IPEndPoint endPoint; // 목적지 주소와 포트 번호
                                     // IPEndPoint는 ip  + 포트 번호를 나타내는 타입이다.
 
-        public UDP()
+        public UDP()    // 생성자
         {
             endPoint = new IPEndPoint(IPAddress.Parse(instance.ip), instance.port); // ip와 port 번호로 새로운 IPEndPoint 생성
                                                                                     // 서버 IPEndPoint가 된다
         }
 
-        public void Connect(int localPort)
+        public void Connect(int localPort)  // 연결 준비
         {
             socket = new UdpClient(localPort);
 
@@ -263,7 +265,7 @@ public class Client : MonoBehaviour
             });
         }
 
-        private void Disconnect()
+        private void Disconnect()   // 연결 해제
         {
             instance.Disconnect();
 
@@ -272,11 +274,11 @@ public class Client : MonoBehaviour
         }
     }
 
-    private void InitClientData()
+    private void InitClientData()  // 패킷들 준비
     {
         packetHandlers = new Dictionary<int, PacketHandler>()   // 패킷을 받음
         {
-            {(int)ServerPackets.welcome, ClientHandle.Welcome },
+            {(int)ServerPackets.init, ClientHandle.Init },
             {(int)ServerPackets.spawnPlayer, ClientHandle.SpawnPlayer },
             {(int)ServerPackets.playerPosition, ClientHandle.PlayerPosition },
             {(int)ServerPackets.playerRotation, ClientHandle.PlayerRotation },
@@ -295,7 +297,7 @@ public class Client : MonoBehaviour
         Debug.Log("Init Packet");
     }
 
-    private void Disconnect()
+    private void Disconnect()   // 연결 해제
     {
         if (isConnected) // 연결 상태이면 종료
         {

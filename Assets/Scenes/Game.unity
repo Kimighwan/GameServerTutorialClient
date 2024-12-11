@@ -4820,6 +4820,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 1956365267530151352, guid: 4f16df08fcd4f99438457c5b4a7bae51, type: 3}
   itemSpawnerPrefab: {fileID: 5345701804994222567, guid: ddb6394ae02fcba4da8269b58aabfffd, type: 3}
   projectilePrefab: {fileID: 6125745697530060056, guid: ba6a7f4c4a1ab774eb99ac40f2afeaca, type: 3}
+  bulletPrefab: {fileID: 5468682612487133710, guid: 5f858ee893d5eae4aa5a7a6a1d3808c7, type: 3}
   playerSpawner:
   - {fileID: 223974227}
   - {fileID: 782628376}

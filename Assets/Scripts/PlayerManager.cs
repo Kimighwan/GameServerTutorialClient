@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// 플레이어 매니저
+
 public class PlayerManager : MonoBehaviour
 {
     public int id;
@@ -12,19 +14,15 @@ public class PlayerManager : MonoBehaviour
     public int dieCount = 0;    // 플레이어 죽은 횟수
     public MeshRenderer model;
 
-    private void Update()
-    {
 
-    }
-
-    public void Initialize(int _id, string _userName)
+    public void Initialize(int _id, string _userName)   // 플레이어 초기값 설정
     {
         id = _id;
         userName = _userName;
         hp = maxHP;
     }
 
-    public void SetHP(float _hp)
+    public void SetHP(float _hp)    // 체력 체크 함수
     {
         hp = _hp;
 
@@ -34,12 +32,12 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public void Die()
+    public void Die()   // 사망
     {
         model.enabled = false;
     }
 
-    public void ReSpawn()
+    public void ReSpawn()   // 리스폰
     {
         model.enabled = true;
         SetHP(maxHP);

@@ -4,6 +4,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+// UI 관리 클래스
+
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;

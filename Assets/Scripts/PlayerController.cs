@@ -2,20 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// 플레이어 컨트롤러
+
 public class PlayerController : MonoBehaviour
 {
-    public Transform camTransform;
+    public Transform camTransform;  // 카메라 위치
 
-    private void Update()
+    private void Update()   // 마우스 입력 감지
     {
         if (!GameManager.instance.gameStart) return;
 
-        if(Input.GetKeyDown(KeyCode.Mouse0))
+        if(Input.GetKeyDown(KeyCode.Mouse0))    // 왼클릭시 총알 발사
         {
             ClientSend.PlayerShoot(camTransform.forward);
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse1))   // 우클릭시 수류탄 사용
         {
             ClientSend.PlayerThrowItem(camTransform.forward);
         }
@@ -27,7 +29,7 @@ public class PlayerController : MonoBehaviour
         SendInputToServer();
     }
 
-    private void SendInputToServer()
+    private void SendInputToServer()    // 입력을 받아 해당 정보 패킷 전송
     {
         bool[] inputs = new bool[]
         {
