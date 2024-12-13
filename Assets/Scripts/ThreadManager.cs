@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// 하나의 특정 스레드에서 실행되도록 코드를 예약한다
-// 스레드 충돌을 막기 위한 클래스
+// 하고 싶은 행위를 Action 데이터형으로 구성된 리스트에 담아 여러 쓰레드를 사용하는 것 처럼 사용합니다.
 
 public class ThreadManager : MonoBehaviour
 {

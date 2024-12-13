@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 // int형 뿐만 아니라 다양한 데이터를 그냥 보낼 수 없습니다.
 // 데이터 유형을 패킷 클래스로 통해 Byte로 변환하여 송수신 합니다.

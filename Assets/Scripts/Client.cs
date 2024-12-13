@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Net;
 using System.Net.Sockets;
 using System;
 using GameServer;
-using UnityEngine.UI;
 
 // 클라이언트 관리 클래스
 // 클라이언트 정보를 저장하는 클래스
