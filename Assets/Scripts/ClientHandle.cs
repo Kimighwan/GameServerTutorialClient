@@ -5,6 +5,8 @@ using UnityEngine;
 // 패킷에서 Byte인 데이터들을 적절한 데이터형으로 읽습니다.
 // 읽은 데이터를 가지고 각 함수에서 하고자 하는 일을 처리합니다.
 
+// 클라이언트에서 수신해야할 모든 일을 받아 처리
+
 public class ClientHandle : MonoBehaviour
 {
     public static void Init(Packet packet) // 초기값 설정 패킷 수신
